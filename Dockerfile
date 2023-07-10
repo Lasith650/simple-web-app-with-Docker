@@ -1,14 +1,23 @@
-#Specify a base Image
+# Specify a base Image
 FROM node:alpine
 
-#add working dir
+# Add working dir
 WORKDIR /usr/app
-#Copy Package.json file to working dir
+
+# Copy Package.json file to working dir
 COPY ./package.json ./
-#install Some dependencies 
+
+# Install Some dependencies
 RUN npm install
-#Copy working Dir to Container Dir
+
+# Copy working Dir to Container Dir
 COPY ./ ./
 
-#default command
-CMD ["npm","start"]
+# Create a non-root user
+RUN adduser -D myuser
+
+# Set the user for subsequent instructions
+USER myuser
+
+# Default command
+CMD ["npm", "start"]
