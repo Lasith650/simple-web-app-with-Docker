@@ -13,11 +13,13 @@ RUN npm install
 # Copy working Dir to Container Dir
 COPY ./ ./
 
-# Set ARG for user ID
+# Set user and group ID variables
 ARG USER_ID=10001
+ARG GROUP_ID=10001
 
 # Create a non-root user with a user ID between 10000 and 20000
-RUN adduser -D -u $USER_ID myuser
+RUN addgroup -g $GROUP_ID mygroup && \
+    adduser -D -u $USER_ID -G mygroup myuser
 
 # Set the user for subsequent instructions
 USER myuser
