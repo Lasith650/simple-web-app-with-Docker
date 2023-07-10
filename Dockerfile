@@ -14,7 +14,7 @@ RUN npm install
 COPY ./ ./
 
 # Create a non-root user
-RUN adduser -D myuser
+RUN adduser -D -u 10001 myuser
 
 # Set the user for subsequent instructions
 USER myuser
