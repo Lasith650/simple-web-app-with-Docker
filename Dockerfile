@@ -13,7 +13,7 @@ RUN npm install
 # Copy working Dir to Container Dir
 COPY ./ ./
 
-# Create a non-root user
+# Create a non-root user with a user ID between 10000 and 20000
 RUN adduser -D -u 10001 myuser
 
 # Set the user for subsequent instructions
